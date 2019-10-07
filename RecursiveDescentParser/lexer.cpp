@@ -62,7 +62,7 @@ Token RecursiveDescentLexer::nextToken() {
 		default:
 			if (isLETTER()) return NAME();
 			cout << "invalid character: " << c;
-			exit(1);
+			exit(0);
 		}
 	} return Token(EOF, "EOF");
 }
