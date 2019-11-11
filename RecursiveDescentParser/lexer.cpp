@@ -36,14 +36,14 @@ string Token::toString() {
 }
 
 
-// implementation of `RecursiveDescentLexer` class constructor. Assigns	`input` and initializes `c`. 
-RecursiveDescentLexer::RecursiveDescentLexer(string input) {
+// implementation of `Lexer` class constructor. Assigns	`input` and initializes `c`. 
+Lexer::Lexer(string input) {
 	this->input = input;
 	this->c = input.at(this->p);
 }
 
-// implementation of `RecursiveDescentLexer`'s `match` method. I haven't seen its use yet
-void RecursiveDescentLexer::match(char x) {
+// implementation of `Lexer`'s `match` method. I haven't seen its use yet
+void Lexer::match(char x) {
 	if (c == x) consume();
 	else {
 		cout << "expecting " << x << "; found " << c;
@@ -51,8 +51,8 @@ void RecursiveDescentLexer::match(char x) {
 	}
 }
 
-// implementation of `RecursiveDescentLexer`'s `nextToken` method
-Token RecursiveDescentLexer::nextToken() {
+// implementation of `Lexer`'s `nextToken` method
+Token Lexer::nextToken() {
 	while (c != EOF) {
 		switch (c) {
 		case ' ': case '\t': case '\n': case '\r': WS(); continue;
@@ -67,26 +67,26 @@ Token RecursiveDescentLexer::nextToken() {
 	} return Token(EOF, "EOF");
 }
 
-// implementation of `RecursiveDescentLexer`'s `consume` method. moves the cursor by one
-void RecursiveDescentLexer::consume() {
+// implementation of `Lexer`'s `consume` method. moves the cursor by one
+void Lexer::consume() {
 	p++; // increment
 	if (p >= input.length()) c = EOF;
 	else c = input.at(p); // assign `c`
 }
 
-// implementation of `RecursiveDescentLexer`'s `WS` method. used to skip all whitespace.
-void RecursiveDescentLexer::WS() {
+// implementation of `Lexer`'s `WS` method. used to skip all whitespace.
+void Lexer::WS() {
 	while (c == ' ' || c == '\t' || c == '\n' || c == '\r') consume();
 }
 
-// implementation of `RecursiveDescentLexer`'s `isLETTER` method. used to assert that `c` is a alphabetic
-bool RecursiveDescentLexer::isLETTER() { return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z'; }
+// implementation of `Lexer`'s `isLETTER` method. used to assert that `c` is a alphabetic
+bool Lexer::isLETTER() { return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z'; }
 
 /*
-	implementation of `RecursiveDescentLexer`'s `NAME` method. used to produce a tNAME token.
+	implementation of `Lexer`'s `NAME` method. used to produce a tNAME token.
 	NAME : ('a'..'z'|'A'..'Z')+; // NAME is sequence of >=1 letter
 */
-Token RecursiveDescentLexer::NAME() {
+Token Lexer::NAME() {
 	string buf;
 	while (isLETTER()) { buf.push_back(c); consume(); }
 	return Token(tNAME, buf);

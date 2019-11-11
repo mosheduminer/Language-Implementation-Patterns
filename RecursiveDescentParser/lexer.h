@@ -1,6 +1,6 @@
 /*
-	This header file declares the `Token` and `RecursiveDescentLexer` classes.
-	The `RecursiveDescentLexer` class parses a given string, by use of the 
+	This header file declares the `Token` and `Lexer` classes.
+	The `Lexer` class parses a given string, by use of the 
 	`nextToken` method. The `Token` class is used to bundle token information
 	into a single object.
 
@@ -25,10 +25,10 @@ namespace lexer {
 		std::string toString(); // evaluates the token text and type to a string.
 	};
 
-	class RecursiveDescentLexer
+	class Lexer
 	{
 	public:
-		RecursiveDescentLexer(std::string input); // the class constructor.
+		Lexer(std::string input); // the class constructor.
 		void match(char x); // asserts that (c == x), and increments the cursor.
 		
 		/* `nextToken` returns the next token in the stream.

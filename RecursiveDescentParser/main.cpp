@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 
 	// declare `c` for file input streaming. used to construct `inputString`
 	char c;
-	// declare `inputString`. used in initializing the `RecursiveDescentLexer`
+	// declare `inputString`. used in initializing the `Lexer`
 	string inputString;
 
 	// stream file and build `inputString`
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 	inFile.close(); // close file
 	
 	// initialize lexer
-	lexer::RecursiveDescentLexer L = lexer::RecursiveDescentLexer(inputString);
+	lexer::Lexer L = lexer::Lexer(inputString);
 	// initialize token variable
 	lexer::Token t;
 	// parse and output a string representation of all tokens
